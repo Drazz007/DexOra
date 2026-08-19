@@ -1,0 +1,915 @@
+function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+
+function searchfun() {
+
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("plt");
+  tr = table.getElementsByTagName("tr");
+
+  
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+// ==========================================
+// HOME PAGE POKEMON SEARCH
+// ==========================================
+
+
+
+// ==========================================
+// START SEARCH
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("pokemon-search");
+    const dropdown = document.getElementById("pokemon-dropdown");
+
+    if (!searchInput || !dropdown) {
+        return;
+    }
+
+const pokemonList = [
+    {
+    name: "Bulbasaur",
+    number: 1,
+    page: "001.htm"
+},
+{
+    name: "Ivysaur",
+    number: 2,
+    page: "002.htm"
+},
+{
+    name: "Venusaur",
+    number: 3,
+    page: "003.htm"
+},
+{
+    name: "Charmander",
+    number: 4,
+    page: "004.htm"
+},
+{
+    name: "Charmeleon",
+    number: 5,
+    page: "005.htm"
+},
+{
+    name: "Charizard",
+    number: 6,
+    page: "006.htm"
+},
+{
+    name: "Squirtle",
+    number: 7,
+    page: "007.htm"
+},
+{
+    name: "Wartortle",
+    number: 8,
+    page: "008.htm"
+},
+{
+    name: "Blastoise",
+    number: 9,
+    page: "009.htm"
+},
+{
+    name: "Caterpie",
+    number: 10,
+    page: "010.htm"
+},
+{
+    name: "Metapod",
+    number: 11,
+    page: "011.htm"
+},
+{
+    name: "Butterfree",
+    number: 12,
+    page: "012.htm"
+},
+{
+    name: "Weedle",
+    number: 13,
+    page: "013.htm"
+},
+{
+    name: "Kakuna",
+    number: 14,
+    page: "014.htm"
+},
+{
+    name: "Beedrill",
+    number: 15,
+    page: "015.htm"
+},
+{
+    name: "Pidgey",
+    number: 16,
+    page: "016.htm"
+},
+{
+    name: "Pidgeotto",
+    number: 17,
+    page: "017.htm"
+},
+{
+    name: "Pidgeot",
+    number: 18,
+    page: "018.htm"
+},
+{
+    name: "Rattata",
+    number: 19,
+    page: "019.htm"
+},
+{
+    name: "Raticate",
+    number: 20,
+    page: "020.htm"
+},
+{
+    name: "Spearow",
+    number: 21,
+    page: "021.htm"
+},
+{
+    name: "Fearow",
+    number: 22,
+    page: "022.htm"
+},
+{
+    name: "Ekans",
+    number: 23,
+    page: "023.htm"
+},
+{
+    name: "Arbok",
+    number: 24,
+    page: "024.htm"
+},
+{
+    name: "Pikachu",
+    number: 25,
+    page: "025.htm"
+},
+{
+    name: "Raichu",
+    number: 26,
+    page: "026.htm"
+},
+{
+    name: "Sandshrew",
+    number: 27,
+    page: "027.htm"
+},
+{
+    name: "Sandslash",
+    number: 28,
+    page: "028.htm"
+},
+{
+    name: "Nidoran♀",
+    number: 29,
+    page: "029.htm"
+},
+{
+    name: "Nidorina",
+    number: 30,
+    page: "030.htm"
+},
+{
+    name: "Nidoqueen",
+    number: 31,
+    page: "031.htm"
+},
+{
+    name: "Nidoran♂",
+    number: 32,
+    page: "032.htm"
+},
+{
+    name: "Nidorino",
+    number: 33,
+    page: "033.htm"
+},
+{
+    name: "Nidoking",
+    number: 34,
+    page: "034.htm"
+},
+{
+    name: "Clefairy",
+    number: 35,
+    page: "035.htm"
+},
+{
+    name: "Clefable",
+    number: 36,
+    page: "036.htm"
+},
+{
+    name: "Vulpix",
+    number: 37,
+    page: "037.htm"
+},
+{
+    name: "Ninetales",
+    number: 38,
+    page: "038.htm"
+},
+{
+    name: "Jigglypuff",
+    number: 39,
+    page: "039.htm"
+},
+{
+    name: "Wigglytuff",
+    number: 40,
+    page: "040.htm"
+},
+{
+    name: "Zubat",
+    number: 41,
+    page: "041.htm"
+},
+{
+    name: "Golbat",
+    number: 42,
+    page: "042.htm"
+},
+{
+    name: "Oddish",
+    number: 43,
+    page: "043.htm"
+},
+{
+    name: "Gloom",
+    number: 44,
+    page: "044.htm"
+},
+{
+    name: "Vileplume",
+    number: 45,
+    page: "045.htm"
+},
+{
+    name: "Paras",
+    number: 46,
+    page: "046.htm"
+},
+{
+    name: "Parasect",
+    number: 47,
+    page: "047.htm"
+},
+{
+    name: "Venonat",
+    number: 48,
+    page: "048.htm"
+},
+{
+    name: "Venomoth",
+    number: 49,
+    page: "049.htm"
+},
+{
+    name: "Diglett",
+    number: 50,
+    page: "050.htm"
+},
+{
+    name: "Dugtrio",
+    number: 51,
+    page: "051.htm"
+},
+{
+    name: "Meowth",
+    number: 52,
+    page: "052.htm"
+},
+{
+    name: "Persian",
+    number: 53,
+    page: "053.htm"
+},
+{
+    name: "Psyduck",
+    number: 54,
+    page: "054.htm"
+},
+{
+    name: "Golduck",
+    number: 55,
+    page: "055.htm"
+},
+{
+    name: "Mankey",
+    number: 56,
+    page: "056.htm"
+},
+{
+    name: "Primeape",
+    number: 57,
+    page: "057.htm"
+},
+{
+    name: "Growlithe",
+    number: 58,
+    page: "058.htm"
+},
+{
+    name: "Arcanine",
+    number: 59,
+    page: "059.htm"
+},
+{
+    name: "Poliwag",
+    number: 60,
+    page: "060.htm"
+},
+{
+    name: "Poliwhirl",
+    number: 61,
+    page: "061.htm"
+},
+{
+    name: "Poliwrath",
+    number: 62,
+    page: "062.htm"
+},
+{
+    name: "Abra",
+    number: 63,
+    page: "063.htm"
+},
+{
+    name: "Kadabra",
+    number: 64,
+    page: "064.htm"
+},
+{
+    name: "Alakazam",
+    number: 65,
+    page: "065.htm"
+},
+{
+    name: "Machop",
+    number: 66,
+    page: "066.htm"
+},
+{
+    name: "Machoke",
+    number: 67,
+    page: "067.htm"
+},
+{
+    name: "Machamp",
+    number: 68,
+    page: "068.htm"
+},
+{
+    name: "Bellsprout",
+    number: 69,
+    page: "069.htm"
+},
+{
+    name: "Weepinbell",
+    number: 70,
+    page: "070.htm"
+},
+{
+    name: "Victreebel",
+    number: 71,
+    page: "071.htm"
+},
+{
+    name: "Tentacool",
+    number: 72,
+    page: "072.htm"
+},
+{
+    name: "Tentacruel",
+    number: 73,
+    page: "073.htm"
+},
+{
+    name: "Geodude",
+    number: 74,
+    page: "074.htm"
+},
+{
+    name: "Graveler",
+    number: 75,
+    page: "075.htm"
+},
+{
+    name: "Golem",
+    number: 76,
+    page: "076.htm"
+},
+{
+    name: "Ponyta",
+    number: 77,
+    page: "077.htm"
+},
+{
+    name: "Rapidash",
+    number: 78,
+    page: "078.htm"
+},
+{
+    name: "Slowpoke",
+    number: 79,
+    page: "079.htm"
+},
+{
+    name: "Slowbro",
+    number: 80,
+    page: "080.htm"
+},
+{
+    name: "Magnemite",
+    number: 81,
+    page: "081.htm"
+},
+{
+    name: "Magneton",
+    number: 82,
+    page: "082.htm"
+},
+{
+    name: "Farfetch'd",
+    number: 83,
+    page: "083.htm"
+},
+{
+    name: "Doduo",
+    number: 84,
+    page: "084.htm"
+},
+{
+    name: "Dodrio",
+    number: 85,
+    page: "085.htm"
+},
+{
+    name: "Seel",
+    number: 86,
+    page: "086.htm"
+},
+{
+    name: "Dewgong",
+    number: 87,
+    page: "087.htm"
+},
+{
+    name: "Grimer",
+    number: 88,
+    page: "088.htm"
+},
+{
+    name: "Muk",
+    number: 89,
+    page: "089.htm"
+},
+{
+    name: "Shellder",
+    number: 90,
+    page: "090.htm"
+},
+{
+    name: "Cloyster",
+    number: 91,
+    page: "091.htm"
+},
+{
+    name: "Gastly",
+    number: 92,
+    page: "092.htm"
+},
+{
+    name: "Haunter",
+    number: 93,
+    page: "093.htm"
+},
+{
+    name: "Gengar",
+    number: 94,
+    page: "094.htm"
+},
+{
+    name: "Onix",
+    number: 95,
+    page: "095.htm"
+},
+{
+    name: "Drowzee",
+    number: 96,
+    page: "096.htm"
+},
+{
+    name: "Hypno",
+    number: 97,
+    page: "097.htm"
+},
+{
+    name: "Krabby",
+    number: 98,
+    page: "098.htm"
+},
+{
+    name: "Kingler",
+    number: 99,
+    page: "099.htm"
+},
+{
+    name: "Voltorb",
+    number: 100,
+    page: "100.htm"
+},
+{
+    name: "Electrode",
+    number: 101,
+    page: "101.htm"
+},
+{
+    name: "Exeggcute",
+    number: 102,
+    page: "102.htm"
+},
+{
+    name: "Exeggutor",
+    number: 103,
+    page: "103.htm"
+},
+{
+    name: "Cubone",
+    number: 104,
+    page: "104.htm"
+},
+{
+    name: "Marowak",
+    number: 105,
+    page: "105.htm"
+},
+{
+    name: "Hitmonlee",
+    number: 106,
+    page: "106.htm"
+},
+{
+    name: "Hitmonchan",
+    number: 107,
+    page: "107.htm"
+},
+{
+    name: "Lickitung",
+    number: 108,
+    page: "108.htm"
+},
+{
+    name: "Koffing",
+    number: 109,
+    page: "109.htm"
+},
+{
+    name: "Weezing",
+    number: 110,
+    page: "110.htm"
+},
+{
+    name: "Rhyhorn",
+    number: 111,
+    page: "111.htm"
+},
+{
+    name: "Rhydon",
+    number: 112,
+    page: "112.htm"
+},
+{
+    name: "Chansey",
+    number: 113,
+    page: "113.htm"
+},
+{
+    name: "Tangela",
+    number: 114,
+    page: "114.htm"
+},
+{
+    name: "Kangaskhan",
+    number: 115,
+    page: "115.htm"
+},
+{
+    name: "Horsea",
+    number: 116,
+    page: "116.htm"
+},
+{
+    name: "Seadra",
+    number: 117,
+    page: "117.htm"
+},
+{
+    name: "Goldeen",
+    number: 118,
+    page: "118.htm"
+},
+{
+    name: "Seaking",
+    number: 119,
+    page: "119.htm"
+},
+{
+    name: "Staryu",
+    number: 120,
+    page: "120.htm"
+},
+{
+    name: "Starmie",
+    number: 121,
+    page: "121.htm"
+},
+{
+    name: "Mr. Mime",
+    number: 122,
+    page: "122.htm"
+},
+{
+    name: "Scyther",
+    number: 123,
+    page: "123.htm"
+},
+{
+    name: "Jynx",
+    number: 124,
+    page: "124.htm"
+},
+{
+    name: "Electabuzz",
+    number: 125,
+    page: "125.htm"
+},
+{
+    name: "Magmar",
+    number: 126,
+    page: "126.htm"
+},
+{
+    name: "Pinsir",
+    number: 127,
+    page: "127.htm"
+},
+{
+    name: "Tauros",
+    number: 128,
+    page: "128.htm"
+},
+{
+    name: "Magikarp",
+    number: 129,
+    page: "129.htm"
+},
+{
+    name: "Gyarados",
+    number: 130,
+    page: "130.htm"
+},
+{
+    name: "Lapras",
+    number: 131,
+    page: "131.htm"
+},
+{
+    name: "Ditto",
+    number: 132,
+    page: "132.htm"
+},
+{
+    name: "Eevee",
+    number: 133,
+    page: "133.htm"
+},
+{
+    name: "Vaporeon",
+    number: 134,
+    page: "134.htm"
+},
+{
+    name: "Jolteon",
+    number: 135,
+    page: "135.htm"
+},
+{
+    name: "Flareon",
+    number: 136,
+    page: "136.htm"
+},
+{
+    name: "Porygon",
+    number: 137,
+    page: "137.htm"
+},
+{
+    name: "Omanyte",
+    number: 138,
+    page: "138.htm"
+},
+{
+    name: "Omastar",
+    number: 139,
+    page: "139.htm"
+},
+{
+    name: "Kabuto",
+    number: 140,
+    page: "140.htm"
+},
+{
+    name: "Kabutops",
+    number: 141,
+    page: "141.htm"
+},
+{
+    name: "Aerodactyl",
+    number: 142,
+    page: "142.htm"
+},
+{
+    name: "Snorlax",
+    number: 143,
+    page: "143.htm"
+},
+{
+    name: "Articuno",
+    number: 144,
+    page: "144.htm"
+},
+{
+    name: "Zapdos",
+    number: 145,
+    page: "145.htm"
+},
+{
+    name: "Moltres",
+    number: 146,
+    page: "146.htm"
+},
+{
+    name: "Dratini",
+    number: 147,
+    page: "147.htm"
+},
+{
+    name: "Dragonair",
+    number: 148,
+    page: "148.htm"
+},
+{
+    name: "Dragonite",
+    number: 149,
+    page: "149.htm"
+},
+{
+    name: "Mewtwo",
+    number: 150,
+    page: "150.htm"
+},
+{
+    name: "Mew",
+    number: 151,
+    page: "151.htm"
+}	
+
+
+
+];
+
+    // ======================================
+    // SEARCH WHILE TYPING
+    // ======================================
+
+    searchInput.addEventListener("input", function () {
+
+        const search = searchInput.value.trim().toLowerCase();
+
+        dropdown.innerHTML = "";
+
+
+        // Don't show anything when empty
+        if (search === "") {
+
+            dropdown.classList.remove("show");
+
+            return;
+        }
+
+
+        // Find matching Pokémon
+        const results = pokemonList
+            .filter(function (pokemon) {
+
+                return pokemon.name
+                    .toLowerCase()
+                    .includes(search);
+
+            })
+            .slice(0, 10);
+
+
+        // ==================================
+        // NO RESULTS
+        // ==================================
+
+        if (results.length === 0) {
+
+            dropdown.innerHTML = `
+                <div class="no-results">
+                    No Pokémon found
+                </div>
+            `;
+
+            dropdown.classList.add("show");
+
+            return;
+        }
+
+
+        // ==================================
+        // CREATE RESULTS
+        // ==================================
+
+        results.forEach(function (pokemon) {
+
+            const result = document.createElement("div");
+
+            result.classList.add("pokemon-result");
+
+
+            result.innerHTML = `
+                <span class="pokemon-number">
+                    #${String(pokemon.number).padStart(3, "0")}
+                </span>
+
+                <span class="pokemon-name">
+                    ${pokemon.name}
+                </span>
+            `;
+
+
+            // Click result
+            result.addEventListener("click", function () {
+
+                window.location.href = pokemon.page;
+
+            });
+
+
+            dropdown.appendChild(result);
+
+        });
+
+
+        dropdown.classList.add("show");
+
+    });
+
+
+    // ======================================
+    // CLOSE WHEN CLICKING OUTSIDE
+    // ======================================
+
+    document.addEventListener("click", function (event) {
+
+        if (!event.target.closest(".home-search")) {
+
+            dropdown.classList.remove("show");
+
+        }
+
+    });
+
+});
